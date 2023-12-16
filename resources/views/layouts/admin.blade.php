@@ -25,6 +25,9 @@
             <button class="header-toggler px-md-0 me-md-3" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
                 <i class="icon icon-lg fas fa-bars"></i>
             </button>
+            <a class="header-brand d-md-none" href="#">
+                <img src="https://placehold.co/118x46.png" width="118" height="46" alt="Logo" />
+            </a>
             <ul class="header-nav d-none d-md-flex">
               <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
             </ul>
