@@ -1,7 +1,7 @@
 <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
     <div class="sidebar-brand d-none d-md-flex">
         <img class="sidebar-brand-full" src="https://placehold.co/118x46.png" width="118" height="46" alt="Logo">
-        <img class="sidebar-brand-narrow" src="https://placehold.co/46x46.png" width="46" height="46" alt="CoreUI Logo">
+        <img class="sidebar-brand-narrow" src="https://placehold.co/46x46.png" width="46" height="46" alt="Logo">
     </div>
 
     <ul class="sidebar-nav simplebar-scrollable-y" data-coreui="navigation" data-simplebar="init">
