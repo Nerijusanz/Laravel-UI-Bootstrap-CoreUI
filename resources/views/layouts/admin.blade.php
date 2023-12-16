@@ -40,16 +40,19 @@
 
                   <a class="dropdown-item" href="#"><i class="icon me-2 far fa-user"></i>Profile</a>
 
-                  <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="icon me-2 fas fa-sign-out-alt"></i>Logout</a>
+                  <div class="dropdown-divider"></div><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();"><i class="icon me-2 fas fa-sign-out-alt"></i>Logout</a>
                 </div>
               </li>
             </ul>
           </div>
         </header>
         <div class="body flex-grow-1 px-3">
-          <div class="container-lg">
+            <div class="container-lg">
             @yield('content')
-          </div>
+            </div>
+            <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
         </div>
         <footer class="footer"></footer>
       </div>
