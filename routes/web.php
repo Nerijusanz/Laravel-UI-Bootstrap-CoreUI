@@ -17,6 +17,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    if (session('status')) {
+        return redirect()->route('admin.home')->with('status', session('status'));
+    }
+
+    return redirect()->route('admin.home');
+});
+
+
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => '\App\Http\Controllers\Admin', 'middleware' => ['auth']], function () {
+
+    Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
+    Route::resource('users', \App\Http\Controllers\Admin\UsersController::class);
+
+});

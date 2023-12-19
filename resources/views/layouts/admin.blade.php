@@ -51,6 +51,9 @@
         </header>
         <div class="body flex-grow-1 px-3">
             <div class="container-lg">
+                @if(session('status'))
+                    <div class="alert alert-success" role="alert">{{ session('status') }}</div>
+                @endif
                 @if(session('message'))
                     <div class="row mb-2">
                         <div class="col-lg-12">

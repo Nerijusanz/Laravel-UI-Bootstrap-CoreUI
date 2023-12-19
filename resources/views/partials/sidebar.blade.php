@@ -13,13 +13,13 @@
                 <div class="simplebar-content" style="padding: 0px;">
 
                 <li class="nav-item">
-                    <a class="nav-link active" href="#"><i class="nav-icon fas fa-tachometer-alt"></i>Dashboard</a>
+                    <a class="nav-link" href="#"><i class="nav-icon fas fa-tachometer-alt"></i>Dashboard</a>
                 </li>
                 <li class="nav-group"><a class="nav-link nav-group-toggle" href="#"><i class="nav-icon fas fa-users"></i>User</a>
                     <ul class="nav-group-items">
                         <li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon fas fa-unlock-alt"></i>Permissions</a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon fas fa-briefcase"></i>Roles</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i class="nav-icon fas fa-user"></i>Users</a></li>
+                        <li class="nav-item"><a href="{{ route('admin.users.index') }}" class="nav-link {{ request()->routeIs('admin.users.*') ? 'active':'' }}"><i class="nav-icon fas fa-user"></i>Users</a></li>
                     </ul>
                 </li>
 
