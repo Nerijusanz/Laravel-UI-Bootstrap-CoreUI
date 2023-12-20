@@ -29,7 +29,7 @@
                                         {{ __('cruds.user.fields.email') }}
                                     </th>
                                     <th>
-                                        {{ __('cruds.user.fields.role_id') }}
+                                        {{ __('cruds.user.fields.role') }}
                                     </th>
                                     <th>
                                         &nbsp;
@@ -49,9 +49,15 @@
                                             {{ $user->email ?? '' }}
                                         </td>
                                         <td>
-                                            @foreach($user->roles as $role)
-                                                <span class="badge bg-success">{{ $role->title }}</span>
-                                            @endforeach
+                                            <?php
+                                                if(! optional($user->roles->first())->title){
+                                                     echo sprintf('<span class="badge bg-danger">%s</span>',__('cruds.user.fields.no_role'));
+                                                }else{
+                                                    echo ($user->roles->first()->title == 'Admin') ?
+                                                        sprintf('<span class="badge bg-primary">%s</span>',$user->roles->first()->title) :
+                                                        sprintf('<span class="badge bg-success">%s</span>',$user->roles->first()->title);
+                                                }
+                                            ?>
                                         </td>
                                         <td>
                                             @can('user_management_show')

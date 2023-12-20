@@ -45,15 +45,15 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <label class="required" for="role_id">{{ __('cruds.user.fields.role_id') }}</label>
-                            <select class="form-control {{ $errors->has('role_id') ? 'is-invalid' : '' }}" name="role_id" id="role_id" required>
+                            <label class="required" for="role">{{ __('cruds.user.fields.role') }}</label>
+                            <select class="form-control {{ $errors->has('role') ? 'is-invalid' : '' }}" name="role" id="role" required>
                                 @foreach($roles as $role)
-                                    <option value="{{ $role->id }}" {{ old('role_id', 2) == $role->id ? 'selected' : '' }}>{{ $role->title }}</option>
+                                    <option value="{{ $role->id }}" {{ old('role', 2) == $role->id ? 'selected' : '' }}>{{ $role->title }}</option>
                                 @endforeach
                             </select>
-                            @if($errors->has('role_id'))
+                            @if($errors->has('role'))
                                 <div class="invalid-feedback">
-                                    {{ $errors->first('role_id') }}
+                                    {{ $errors->first('role') }}
                                 </div>
                             @endif
                         </div>

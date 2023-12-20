@@ -38,6 +38,7 @@ return [
             'deleted_at'         => 'Deleted at',
             'deleted_at_helper'  => '',
         ],
+
     ],
     'user'           => [
         'title'          => 'Users',
@@ -53,8 +54,10 @@ return [
             'email_verified_at_helper' => '',
             'password'                 => 'Password',
             'password_helper'          => '',
-            'role_id'                  => 'Role',
-            'role_id_helper'           => '',
+            'role'                  => 'Role',
+            'role_helper'           => '',
+            'no_role'               => 'No role',
+            'no_role_helper'        => '',
             'remember_token'           => 'Remember Token',
             'remember_token_helper'    => '',
             'created_at'               => 'Created at',

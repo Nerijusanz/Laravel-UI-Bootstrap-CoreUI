@@ -43,7 +43,7 @@
                             </tr>
                             <tr>
                                 <th>
-                                    {{ __('cruds.user.fields.role_id') }}
+                                    {{ __('cruds.user.fields.role') }}
                                 </th>
                                 <td>
                                     @foreach($user->roles as $role)
