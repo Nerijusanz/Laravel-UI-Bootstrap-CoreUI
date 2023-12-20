@@ -41,8 +41,8 @@ class UsersController extends Controller
 
     public function store(StoreUserRequest $request)
     {
-        $user = User::create($request->safe()->except(['role_id']));
-        $user->roles()->sync($request->validated('role_id'));
+        $user = User::create($request->safe()->except(['role']));
+        $user->roles()->sync($request->validated('role'));
 
         return redirect()->route('admin.users.index');
     }
@@ -72,9 +72,8 @@ class UsersController extends Controller
 
     public function update(UpdateUserRequest $request, User $user)
     {
-
-        $user->update($request->safe()->except(['role_id']));
-        $user->roles()->sync($request->validated('role_id'));
+        $user->update($request->safe()->except(['role']));
+        $user->roles()->sync($request->validated('role'));
 
         if(isset($request['password']) && $request['password'] != null){
 
