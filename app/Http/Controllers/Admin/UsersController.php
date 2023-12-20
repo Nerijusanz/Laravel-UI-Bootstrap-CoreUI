@@ -75,7 +75,7 @@ class UsersController extends Controller
         $user->update($request->safe()->except(['role']));
         $user->roles()->sync($request->validated('role'));
 
-        if(isset($request['password']) && $request['password'] != null){
+        if(isset($request['password']) && $request['password'] !== null){
 
             $validated = $request->validate([
                 'password' => ['required', Password::defaults(), 'confirmed'],
@@ -87,7 +87,7 @@ class UsersController extends Controller
 
         }
 
-        return redirect()->route('admin.users.show',$user->id)->with('status', 'admin-users-updated');
+        return redirect()->route('admin.users.show',$user->id)->with('status',__('cruds.user.messages.updated'));
     }
 
 

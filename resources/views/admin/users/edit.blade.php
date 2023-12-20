@@ -3,9 +3,11 @@
 @section('content')
     <div class="row mb-2">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.users.index") }}">
-                {{ __('global.back_to_list') }}
-            </a>
+            @can('user_management_show')
+                <a class="btn btn-sm btn-link" href="{{ route('admin.users.show', $user->id) }}">
+                    {{ __('global.view') }}
+                </a>
+            @endcan
         </div>
     </div>
     <div class="row">
@@ -45,10 +47,18 @@
                                 </div>
                             @endif
                         </div>
-
+                        <div class="form-group">
+                            <label class="required" for="password_confirmation">{{ __('cruds.user.fields.password_confirmation') }}</label>
+                            <input class="form-control {{ $errors->has('password_confirmation') ? 'is-invalid' : '' }}" type="password" name="password_confirmation" id="password_confirmation">
+                            @if($errors->has('password_confirmation'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('password_confirmation') }}
+                                </div>
+                            @endif
+                        </div>
                         <div class="form-group">
                             <label class="required" for="role">{{ __('cruds.user.fields.role') }}</label>
-                            <select class="form-control {{ $errors->has('role') ? 'is-invalid' : '' }}" name="role" id="role" required>
+                            <select class="form-control select2 {{ $errors->has('role') ? 'is-invalid' : '' }}" name="role" id="role" required>
                                 @foreach($roles as $role)
                                     <option value="{{ $role->id }}" {{ old('role', optional($user->roles->first())->id ?? 2) == $role->id ? 'selected' : '' }}>{{ $role->title }}</option>
                                 @endforeach
@@ -60,7 +70,7 @@
                             @endif
                         </div>
                         <div class="form-group mt-2">
-                            <button class="btn btn-danger" type="submit">
+                            <button class="btn btn-sm btn-success" type="submit">
                                 {{ __('global.save') }}
                             </button>
                         </div>

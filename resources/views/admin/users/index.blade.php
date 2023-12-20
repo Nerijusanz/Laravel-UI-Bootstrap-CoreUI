@@ -3,7 +3,7 @@
 @section('content')
     <div class="row mb-2">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.users.create") }}">
+            <a class="btn btn-sm btn-success" href="{{ route("admin.users.create") }}">
                 {{ __('global.add') }} {{ __('cruds.user.title_singular') }}
             </a>
         </div>
@@ -51,7 +51,7 @@
                                         <td>
                                             <?php
                                                 if(! optional($user->roles->first())->title){
-                                                     echo sprintf('<span class="badge bg-danger">%s</span>',__('cruds.user.fields.no_role'));
+                                                    echo sprintf('<span class="badge bg-danger">%s</span>',__('cruds.user.fields.no_role'));
                                                 }else{
                                                     echo ($user->roles->first()->title == 'Admin') ?
                                                         sprintf('<span class="badge bg-primary">%s</span>',$user->roles->first()->title) :
@@ -61,21 +61,9 @@
                                         </td>
                                         <td>
                                             @can('user_management_show')
-                                                <a class="btn btn-sm btn-primary" href="{{ route('admin.users.show', $user->id) }}">
+                                                <a class="btn btn-sm btn-link" href="{{ route('admin.users.show', $user->id) }}">
                                                     {{ __('global.view') }}
                                                 </a>
-                                            @endcan
-                                            @can('user_management_edit')
-                                                <a class="btn btn-sm btn-info" href="{{ route('admin.users.edit', $user->id) }}">
-                                                    {{ __('global.edit') }}
-                                                </a>
-                                            @endcan
-                                            @can('user_management_delete')
-                                                <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ __('global.areYouSure') }}');" style="display: inline-block;">
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                    <input type="submit" class="btn btn-sm btn-danger" value="{{ __('global.delete') }}">
-                                                </form>
                                             @endcan
                                         </td>
                                     </tr>

@@ -54,6 +54,8 @@ return [
             'email_verified_at_helper' => '',
             'password'                 => 'Password',
             'password_helper'          => '',
+            'password_confirmation'    => 'Password confirmation',
+            'password_confirmation_helper' => '',
             'role'                  => 'Role',
             'role_helper'           => '',
             'no_role'               => 'No role',
@@ -66,6 +68,9 @@ return [
             'updated_at_helper'        => '',
             'deleted_at'               => 'Deleted at',
             'deleted_at_helper'        => '',
+        ],
+        'messages'          =>[
+            'updated'                   => 'User updated'
         ],
     ],
 ];
