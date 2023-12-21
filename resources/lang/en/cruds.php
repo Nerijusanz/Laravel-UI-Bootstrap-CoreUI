@@ -20,6 +20,9 @@ return [
             'deleted_at'        => 'Deleted at',
             'deleted_at_helper' => '',
         ],
+        'messages'          =>[
+            'updated'                   => 'Permission updated'
+        ],
     ],
     'role'           => [
         'title'          => 'Roles',
