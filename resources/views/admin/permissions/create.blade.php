@@ -1,41 +1,36 @@
 @extends('layouts.admin')
-
 @section('content')
-    <div class="row mb-2">
-        <div class="col-lg-12">
-            @can('permission_management_access')
-                <a class="btn btn-sm btn-link" href="{{ route("admin.permissions.index") }}">
-                    &lt;&nbsp;{{ __('global.back_to_list') }}
-                </a>
-            @endcan
+    @can('permission_management_access')
+        <div class="d-flex justify-content-start mb-1">
+            <a href="{{ route("admin.permissions.index") }}" class="btn btn-sm btn-link">
+                &lt;&nbsp;{{ __('global.back_to_list') }}
+            </a>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header">
-                    {{ __('global.create') }} {{ __('cruds.permission.title_singular') }}
-                </div>
-                <div class="card-body">
-                    <form method="POST" action="{{ route("admin.permissions.store") }}">
-                        @csrf
-                        <div class="form-group">
-                            <label class="required" for="title">{{ __('cruds.permission.fields.title') }}</label>
-                            <input class="form-control @error('title') is-invalid @enderror" type="text" name="title" id="title" value="{{ old('title', '') }}" required>
-                            @error('title')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group mt-2">
-                            <button class="btn btn-sm btn-success" type="submit">
+    @endcan
+        <div class="card">
+            <div class="card-header">
+                <h6>{{ __('global.create') }} {{ __('cruds.permission.title_singular') }}</h6>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ route("admin.permissions.store") }}">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="title" class="form-label">title</label>
+                        <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title', '') }}" required>
+                        @error('title')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    @can('permission_management_create')
+                        <div class="d-flex justify-content-start">
+                            <button type="submit" class="btn btn-sm btn-success text-light">
                                 {{ __('global.save') }}
                             </button>
                         </div>
-                    </form>
-                </div>
+                    @endcan
+                </form>
             </div>
         </div>
-    </div>
 @endsection
