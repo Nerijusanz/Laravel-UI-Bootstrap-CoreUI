@@ -7,30 +7,30 @@
             </a>
         </div>
     @endcan
-        <div class="card">
-            <div class="card-header">
-                <h6>{{ __('global.create') }} {{ __('cruds.permission.title_singular') }}</h6>
-            </div>
-            <div class="card-body">
-                <form method="POST" action="{{ route("admin.permissions.store") }}">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="title" class="form-label">title</label>
-                        <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title', '') }}" required>
-                        @error('title')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    @can('permission_management_create')
-                        <div class="d-flex justify-content-start">
-                            <button type="submit" class="btn btn-sm btn-success text-light">
-                                {{ __('global.save') }}
-                            </button>
-                        </div>
-                    @endcan
-                </form>
-            </div>
+    <div class="card">
+        <div class="card-header">
+            <h6>{{ __('global.create') }} {{ __('cruds.permission.title_singular') }}</h6>
         </div>
+        <div class="card-body">
+            <form action="{{ route("admin.permissions.store") }}" method="POST">
+                @csrf
+                <div class="mb-3">
+                    <label for="title" class="form-label">{{ __('cruds.permission.fields.title') }}</label>
+                    <input type="text" name="title" id="title" class="form-control form-control-sm @error('title') is-invalid @enderror" value="{{ old('title', '') }}" required>
+                    @error('title')
+                        <span class="invalid-feedback fw-light fst-italic" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                @can('permission_management_create')
+                    <div class="d-flex justify-content-start">
+                        <button type="submit" class="btn btn-sm btn-success text-light">
+                            {{ __('global.save') }}
+                        </button>
+                    </div>
+                @endcan
+            </form>
+        </div>
+    </div>
 @endsection
