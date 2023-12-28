@@ -43,6 +43,7 @@ return [
             'password_confirmation'    => 'Password confirmation',
             'role'                  => 'Role',
             'no_role'               => 'No role',
+            'no_roles_exists'       => 'No roles exists',
             'remember_token'           => 'Remember Token',
             'created_at'               => 'Created at',
             'updated_at'               => 'Updated at',
