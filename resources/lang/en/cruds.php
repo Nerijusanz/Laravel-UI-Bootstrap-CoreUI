@@ -30,6 +30,9 @@ return [
             'updated_at'         => 'Updated at',
             'deleted_at'         => 'Deleted at',
         ],
+        'messages' => [
+            'updated' => 'updated'
+        ],
     ],
     'user' => [
         'title'          => 'Users',
