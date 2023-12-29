@@ -2,7 +2,7 @@
 @section('content')
     @can('permission_management_access')
         <div class="d-flex justify-content-start mb-1">
-            <a href="{{ route("admin.permissions.index") }}" class="btn btn-sm btn-link">
+            <a href="{{ route('admin.permissions.index') }}" class="btn btn-sm btn-link">
                 &lt;&nbsp;{{ __('global.back_to_list') }}
             </a>
         </div>
@@ -12,11 +12,11 @@
             <h6>{{ __('global.create') }} {{ __('cruds.permission.title_singular') }}</h6>
         </div>
         <div class="card-body">
-            <form action="{{ route("admin.permissions.store") }}" method="POST">
+            <form action="{{ route('admin.permissions.store') }}" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="title" class="form-label">{{ __('cruds.permission.fields.title') }}</label>
-                    <input type="text" name="title" id="title" class="form-control form-control-sm @error('title') is-invalid @enderror" value="{{ old('title', '') }}" required>
+                    <input type="text" name="title" id="title" value="{{ old('title', '') }}" class="form-control form-control-sm @error('title') is-invalid @enderror" required>
                     @error('title')
                         <span class="invalid-feedback fw-light fst-italic" role="alert">
                             <strong>{{ $message }}</strong>

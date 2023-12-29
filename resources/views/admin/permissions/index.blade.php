@@ -2,7 +2,7 @@
 @section('content')
     @can('permission_management_create')
         <div class="d-flex justify-content-start mb-1">
-            <a href="{{ route("admin.permissions.create") }}" class="btn btn-sm btn-success text-light">
+            <a href="{{ route('admin.permissions.create') }}" class="btn btn-sm btn-success text-light">
                 <i class="fas fa-plus"></i>&nbsp;{{ __('global.add') }} {{ __('cruds.permission.title_singular') }}
             </a>
         </div>

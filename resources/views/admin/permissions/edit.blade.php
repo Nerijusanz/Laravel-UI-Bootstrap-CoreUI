@@ -2,7 +2,7 @@
 @section('content')
     @can('permission_management_access')
         <div class="d-flex justify-content-start mb-1">
-            <a href="{{ route("admin.permissions.index") }}" class="btn btn-sm btn-link">
+            <a href="{{ route('admin.permissions.index') }}" class="btn btn-sm btn-link">
                 &lt;&nbsp;{{ __('global.back_to_list') }}
             </a>
         </div>
@@ -12,7 +12,7 @@
             <h6>{{ __('global.edit') }} {{ __('cruds.permission.title_singular') }}</h6>
         </div>
         <div class="card-body">
-            <form action="{{ route("admin.permissions.update", [$permission->id]) }}" method="POST">
+            <form action="{{ route('admin.permissions.update', [$permission->id]) }}" method="POST">
                 @method('PUT')
                 @csrf
                 <div class="mb-3">
