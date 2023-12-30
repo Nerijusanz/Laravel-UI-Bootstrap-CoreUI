@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 use App\Models\User;
 use App\Models\Role;
@@ -19,7 +21,7 @@ use App\Http\Requests\Admin\UpdateUserRequest;
 class UsersController extends Controller
 {
 
-    public function index()
+    public function index(): View
     {
         abort_if(Gate::denies('user_management_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
@@ -29,7 +31,7 @@ class UsersController extends Controller
     }
 
 
-    public function create()
+    public function create(): View
     {
         abort_if(Gate::denies('user_management_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
@@ -39,7 +41,7 @@ class UsersController extends Controller
     }
 
 
-    public function store(StoreUserRequest $request)
+    public function store(StoreUserRequest $request): RedirectResponse
     {
         $user = User::create($request->safe()->except(['role']));
         $user->roles()->sync($request->validated('role'));
@@ -48,7 +50,7 @@ class UsersController extends Controller
     }
 
 
-    public function show(User $user)
+    public function show(User $user): View
     {
         abort_if(Gate::denies('user_management_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
@@ -58,7 +60,7 @@ class UsersController extends Controller
     }
 
 
-    public function edit(User $user)
+    public function edit(User $user): View
     {
         abort_if(Gate::denies('user_management_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
@@ -70,7 +72,7 @@ class UsersController extends Controller
     }
 
 
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
         $user->update($request->safe()->except(['role']));
         $user->roles()->sync($request->validated('role'));
@@ -91,7 +93,7 @@ class UsersController extends Controller
     }
 
 
-    public function destroy(User $user)
+    public function destroy(User $user): RedirectResponse
     {
         abort_if(Gate::denies('user_management_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
