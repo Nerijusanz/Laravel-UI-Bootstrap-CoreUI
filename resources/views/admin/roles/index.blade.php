@@ -45,10 +45,10 @@
                                             <a href="{{ route('admin.roles.edit', $role->id) }}" class="btn btn-sm btn-info text-light me-1"><i class="fas fa-edit"></i></a>
                                         @endcan
                                         @can('role_management_delete')
-                                            <button type="submit" class="btn btn-sm btn-danger text-light" onclick="if (confirm('{{ __('global.areYouSure') }}') == true){ event.preventDefault(); document.getElementById('form-role-delete').submit(); }">
+                                            <button type="submit" class="btn btn-sm btn-danger text-light" onclick="if (confirm('{{ __('global.areYouSure') }}') == true){ event.preventDefault(); document.getElementById('form-role-delete-{{ $role->id }}').submit(); }">
                                                 <i class="fas fa-trash"></i>
                                             </button>
-                                            <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" id="form-role-delete" class="d-none">
+                                            <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" id="form-role-delete-{{ $role->id }}" class="d-none">
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             </form>

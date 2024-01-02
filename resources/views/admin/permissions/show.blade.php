@@ -17,10 +17,10 @@
                     <a href="{{ route('admin.permissions.edit', $permission->id) }}" class="btn btn-sm btn-info text-light float-end me-1"><i class="fas fa-edit"></i></a>
                 @endcan
                 @can('permission_management_delete')
-                    <button type="submit" class="btn btn-sm btn-danger text-light float-end" onclick="if (confirm('{{ __('global.areYouSure') }}') == true){ event.preventDefault(); document.getElementById('form-permission-delete').submit(); }">
+                    <button type="submit" class="btn btn-sm btn-danger text-light float-end" onclick="if (confirm('{{ __('global.areYouSure') }}') == true){ event.preventDefault(); document.getElementById('form-permission-delete-{{ $permission->id }}').submit(); }">
                         <i class="fas fa-trash"></i>
                     </button>
-                    <form action="{{ route('admin.permissions.destroy', $permission->id) }}" method="POST" id="form-permission-delete" class="d-none">
+                    <form action="{{ route('admin.permissions.destroy', $permission->id) }}" method="POST" id="form-permission-delete-{{ $permission->id }}" class="d-none">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     </form>
