@@ -50,7 +50,7 @@
                                         if(! optional($user->roles->first())->title){
                                             echo sprintf('<span class="badge bg-danger">%s</span>',__('cruds.user.fields.no_role'));
                                         }else{
-                                            echo ($user->roles->first()->title == 'Admin') ?
+                                            echo (optional($user->roles->first())->id == 1) ?
                                                 sprintf('<span class="badge bg-primary">%s</span>',$user->roles->first()->title) :
                                                 sprintf('<span class="badge bg-success">%s</span>',$user->roles->first()->title);
                                         }
