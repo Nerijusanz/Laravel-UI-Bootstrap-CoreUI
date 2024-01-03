@@ -6,6 +6,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Validation\Rule;
+use App\Models\Role;
 
 class StoreRoleRequest extends FormRequest
 {
@@ -20,7 +22,7 @@ class StoreRoleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required','string','min:2','max:255'],
+            'title' => ['required','string','lowercase','min:2','max:255', Rule::unique(Role::class)],
         ];
 
     }
