@@ -20,7 +20,7 @@ class UpdateRoleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required','string','min:2','max:255'],
+            'title' => ['required','string','lowercase','min:2','max:255','unique:App\Models\Role,title,' . request()->route('role')->id],
         ];
 
     }

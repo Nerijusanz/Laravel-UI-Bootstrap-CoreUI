@@ -22,8 +22,8 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => ['required','string','min:2','max:255'],
-            'email'   => ['required','string','lowercase','email','max:255','unique:users,email,' . request()->route('user')->id],
-            'role'  => ['required','exists:App\Models\Role,id'],
+            'email' => ['required','string','lowercase','email','max:255','unique:App\Models\User,email,' . request()->route('user')->id],
+            'role' => ['required','exists:App\Models\Role,id'],
         ];
 
     }
