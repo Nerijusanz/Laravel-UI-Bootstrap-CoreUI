@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -79,14 +80,17 @@ class UsersController extends Controller
 
         if(isset($request['password']) && $request['password'] !== null){
 
-            $validated = $request->validate([
-                'password' => ['required', Password::defaults(), 'confirmed'],
+            $validator = Validator::make($request->all(), [
+                'password' => ['required','string','max:255', Password::defaults(), 'confirmed'],
             ]);
+
+            if ($validator->fails()) return redirect()->back()->withErrors($validator)->withInput();
+
+            $validated = $validator->validated();
 
             $user->update([
-                'password' => Hash::make($validated['password']),
+                'password' => Hash::make($validated['password'])
             ]);
-
         }
 
         return redirect()->route('admin.users.show',$user->id)->with('status',__('cruds.user.messages.updated'));
