@@ -26,7 +26,7 @@
                                 {{ __('cruds.user.fields.email') }}
                             </th>
                             <th>
-                                {{ __('cruds.user.fields.role') }}
+                                {{ __('cruds.user.fields.role_id') }}
                             </th>
                             <th>
                                 &nbsp;
@@ -48,7 +48,7 @@
                                 <td>
                                     <?php
                                         if(! optional($user->roles->first())->title){
-                                            echo sprintf('<span class="badge bg-danger">%s</span>',__('cruds.user.fields.no_role'));
+                                            echo sprintf('<span class="badge bg-danger">%s</span>',__('cruds.user.fields.no_role_id'));
                                         }else{
                                             echo (optional($user->roles->first())->id == 1) ?
                                                 sprintf('<span class="badge bg-primary">%s</span>',$user->roles->first()->title) :
