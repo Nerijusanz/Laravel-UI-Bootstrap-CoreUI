@@ -51,17 +51,17 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="role" class="required">{{ __('cruds.user.fields.role') }}</label>
-                    <select name="role" id="role" class="form-control form-control-sm select2 @error('role') is-invalid @enderror" required>
+                    <label for="role_id" class="required">{{ __('cruds.user.fields.role_id') }}</label>
+                    <select name="role_id" id="role_id" class="form-control form-control-sm select2 @error('role_id') is-invalid @enderror" required>
                         @if( $roles->count() > 0 )
                             @foreach($roles as $role)
-                                <option value="{{ $role->id }}" {{ old('role', 2) == $role->id ? 'selected' : '' }}>{{ $role->title }}</option>
+                                <option value="{{ $role->id }}" {{ ($role->id == old('role_id', 2)) ? 'selected' : '' }}>{{ $role->title }}</option>
                             @endforeach
                         @else
-                            <option>{{ __('cruds.user.fields.no_roles_exists') }}</option>
+                            <option>{{ __('cruds.user.fields.no_role_id') }}</option>
                         @endif
                     </select>
-                    @error('role')
+                    @error('role_id')
                         <span class="invalid-feedback fw-light fst-italic" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
