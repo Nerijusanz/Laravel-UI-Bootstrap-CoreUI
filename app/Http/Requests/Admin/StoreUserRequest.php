@@ -9,6 +9,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\User;
+use App\Models\Role;
 
 class StoreUserRequest extends FormRequest
 {
@@ -26,7 +27,7 @@ class StoreUserRequest extends FormRequest
             'name' => ['required','string','min:2','max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)],
             'password' => ['required',Password::defaults(),'confirmed'],
-            'role_id'  => ['required','numeric','exists:App\Models\Role,id']
+            'role_id'  => ['required','numeric', Rule::exists(Role::class, 'id')]
         ];
 
     }
