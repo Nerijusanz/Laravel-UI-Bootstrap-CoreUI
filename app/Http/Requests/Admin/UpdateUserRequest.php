@@ -7,6 +7,8 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Validation\Rule;
+use App\Models\User;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -22,9 +24,8 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => ['required','string','min:2','max:255'],
-            'email' => ['required','string','lowercase','email','max:255','unique:App\Models\User,email,' . request()->route('user')->id],
+            'email' => ['required','string','lowercase','email','max:255', Rule::unique(User::class)->ignore(request()->route('user')->id)],
             'role_id' => ['required','numeric','exists:App\Models\Role,id'],
         ];
-
     }
 }
