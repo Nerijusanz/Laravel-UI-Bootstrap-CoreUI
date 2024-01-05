@@ -46,15 +46,13 @@
                                     {{ $user->email ?? '' }}
                                 </td>
                                 <td>
-                                    <?php
-                                        if(! optional($user->roles->first())->title){
-                                            echo sprintf('<span class="badge bg-danger">%s</span>',__('cruds.user.fields.no_role_id'));
-                                        }else{
-                                            echo (optional($user->roles->first())->id == 1) ?
-                                                sprintf('<span class="badge bg-primary">%s</span>',$user->roles->first()->title) :
-                                                sprintf('<span class="badge bg-success">%s</span>',$user->roles->first()->title);
-                                        }
-                                    ?>
+                                    @if(! optional($user->roles->first())->id)
+                                        <span class="badge bg-danger">{{ __('cruds.user.fields.no_role_id') }}</span>
+                                    @elseif(optional($user->roles->first())->id == 1)
+                                        <span class="badge bg-primary">{{ $user->roles->first()->title }}</span>
+                                    @else
+                                        <span class="badge bg-success">{{ $user->roles->first()->title }}</span>
+                                    @endif
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-end">
