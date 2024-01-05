@@ -6,6 +6,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Validation\Rule;
+use App\Models\Role;
 
 class UpdateRoleRequest extends FormRequest
 {
@@ -20,8 +22,7 @@ class UpdateRoleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required','string','lowercase','min:2','max:255','unique:App\Models\Role,title,' . request()->route('role')->id],
+            'title' => ['required','string','lowercase','min:2','max:255', Rule::unique(Role::class)->ignore(request()->route('role')->id)],
         ];
-
     }
 }
