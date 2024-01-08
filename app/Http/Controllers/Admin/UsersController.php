@@ -75,7 +75,7 @@ class UsersController extends Controller
 
     public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
-        $user->update($request->safe()->except(['role_id']));
+        $user->update($request->safe()->except(['user_id','role_id']));
         $user->roles()->sync($request->validated('role_id'));
 
         if(isset($request['password']) && $request['password'] !== null){

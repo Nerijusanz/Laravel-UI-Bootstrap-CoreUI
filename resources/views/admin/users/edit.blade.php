@@ -15,6 +15,7 @@
             <form action="{{ route('admin.users.update', $user->id) }}" method="POST">
                 @method('PUT')
                 @csrf
+                <input type="hidden" name="user_id" value="{{ $user->id }}" />
                 <div class="mb-3">
                     <label for="name" class="form-label">{{ __('cruds.user.fields.name') }}</label>
                     <input type="text" name="name" id="name" value="{{ old('name', $user->name ?? '') }}" class="form-control form-control-sm @error('name') is-invalid @enderror" required>
