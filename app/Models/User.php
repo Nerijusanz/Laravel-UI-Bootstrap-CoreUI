@@ -47,9 +47,10 @@ class User extends Authenticatable
 
     public function setPasswordAttribute($input)
     {
-        if ($input) {
-            $this->attributes['password'] = app('hash')->needsRehash($input) ? Hash::make($input) : $input;
-        }
+        if( !$input ) return;
+
+        $this->attributes['password'] = app('hash')->needsRehash($input) ? Hash::make($input) : $input;
+
     }
 
     public function roles(): BelongsToMany
