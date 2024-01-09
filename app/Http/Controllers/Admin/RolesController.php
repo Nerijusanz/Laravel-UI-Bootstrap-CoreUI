@@ -55,7 +55,7 @@ class RolesController extends Controller
 
     public function update(UpdateRoleRequest $request, Role $role): RedirectResponse
     {
-        $role->update($request->validated());
+        $role->update($request->safe()->except(['role_id']));
 
         return redirect()->route('admin.roles.show',$role->id)->with('status',__('cruds.role.messages.updated'));
     }
