@@ -12,9 +12,10 @@
             <h6>{{ __('global.edit') }} {{ __('cruds.permission.title_singular') }}</h6>
         </div>
         <div class="card-body">
-            <form action="{{ route('admin.permissions.update', [$permission->id]) }}" method="POST">
+            <form action="{{ route('admin.permissions.update', $permission->id) }}" method="POST">
                 @method('PUT')
                 @csrf
+                <input type="hidden" name="permission_id" value="{{ $permission->id }}" />
                 <div class="mb-3">
                     <label for="title" class="form-label">{{ __('cruds.permission.fields.title') }}</label>
                     <input type="text" name="title" id="title" value="{{ old('title', $permission->title ?? '') }}" class="form-control form-control-sm @error('title') is-invalid @enderror" required>

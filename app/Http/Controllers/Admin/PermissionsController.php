@@ -56,7 +56,7 @@ class PermissionsController extends Controller
 
     public function update(UpdatePermissionRequest $request, Permission $permission): RedirectResponse
     {
-        $permission->update($request->validated());
+        $permission->update($request->safe()->except(['permission_id']));
 
         return redirect()->route('admin.permissions.show',$permission->id)->with('status',__('cruds.permission.messages.updated'));
     }
