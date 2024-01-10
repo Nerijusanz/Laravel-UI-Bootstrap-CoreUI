@@ -26,6 +26,7 @@ return [
             'id'                 => 'ID',
             'title'              => 'Title',
             'permissions'        => 'Permissions',
+            'permission_ids'     => 'Permissions',
             'created_at'         => 'Created at',
             'updated_at'         => 'Updated at',
             'deleted_at'         => 'Deleted at',

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Validation\Rule;
 use App\Models\Role;
+use App\Models\Permission;
 
 class StoreRoleRequest extends FormRequest
 {
@@ -23,6 +24,8 @@ class StoreRoleRequest extends FormRequest
     {
         return [
             'title' => ['required','string','lowercase','min:2','max:255', Rule::unique(Role::class)],
+            'permission_ids' => ['required','array'],
+            'permission_ids.*' => ['integer', Rule::exists(Permission::class, 'id')]
         ];
 
     }

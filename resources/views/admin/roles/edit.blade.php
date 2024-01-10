@@ -25,6 +25,21 @@
                         </span>
                     @enderror
                 </div>
+                <div class="mb-3">
+                    <label for="permission_ids" class="required">{{ __('cruds.role.fields.permission_ids') }}</label>
+                    <select name="permission_ids[]" id="permission_ids" multiple="multiple" class="form-control form-control-sm select2-tags @error('permission_ids') is-invalid @enderror" required>
+                        @if( $permissions->count() > 0 )
+                            @foreach($permissions as $permission)
+                                <option value="{{ $permission->id }}" {{ $role->permissions->pluck('id')->contains($permission->id) ? 'selected' : '' }} >{{ $permission->title }}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                    @error('permission_ids')
+                        <span class="invalid-feedback fw-light fst-italic" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
                 @can('role_management_edit')
                     <div class="d-flex justify-content-start">
                         <button type="submit" class="btn btn-sm btn-success text-light">

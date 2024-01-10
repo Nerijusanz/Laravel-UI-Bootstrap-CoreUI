@@ -11,6 +11,7 @@ use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 
 use App\Models\Role;
+use App\Models\Permission;
 use App\Http\Requests\Admin\StoreRoleRequest;
 use App\Http\Requests\Admin\UpdateRoleRequest;
 
@@ -20,7 +21,7 @@ class RolesController extends Controller
     {
         abort_if(Gate::denies('role_management_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $roles = Role::paginate();
+        $roles = Role::with('permissions')->paginate();
 
         return view('admin.roles.index', compact('roles'));
     }
@@ -29,12 +30,16 @@ class RolesController extends Controller
     {
         abort_if(Gate::denies('role_management_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.roles.create');
+        $permissions = Permission::select('id','title')->get();
+
+        return view('admin.roles.create',compact('permissions'));
     }
 
     public function store(StoreRoleRequest $request): RedirectResponse
     {
-        $role = Role::create($request->validated());
+        $role = Role::create($request->safe()->except(['permission_ids']));
+
+        $role->permissions()->sync($request->validated('permission_ids'));
 
         return redirect()->route('admin.roles.index');
     }
@@ -43,6 +48,8 @@ class RolesController extends Controller
     {
         abort_if(Gate::denies('role_management_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $role->load('permissions');
+
         return view('admin.roles.show', compact('role'));
     }
 
@@ -50,12 +57,18 @@ class RolesController extends Controller
     {
         abort_if(Gate::denies('role_management_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.roles.edit', compact('role'));
+        $permissions = Permission::select('id','title')->get();
+
+        $role->load('permissions');
+
+        return view('admin.roles.edit', compact('role','permissions'));
     }
 
     public function update(UpdateRoleRequest $request, Role $role): RedirectResponse
     {
-        $role->update($request->safe()->except(['role_id']));
+        $role->update($request->safe()->except(['role_id','permission_ids']));
+
+        $role->permissions()->sync($request->validated('permission_ids'));
 
         return redirect()->route('admin.roles.show',$role->id)->with('status',__('cruds.role.messages.updated'));
     }
@@ -63,6 +76,8 @@ class RolesController extends Controller
     public function destroy(Role $role): RedirectResponse
     {
         abort_if(Gate::denies('role_management_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $role->permissions()->sync([]);
 
         $role->delete();
 
