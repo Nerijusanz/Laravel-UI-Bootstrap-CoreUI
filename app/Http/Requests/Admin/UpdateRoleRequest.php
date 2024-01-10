@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Validation\Rule;
 use App\Models\Role;
+use App\Models\Permission;
 
 class UpdateRoleRequest extends FormRequest
 {
@@ -24,6 +25,8 @@ class UpdateRoleRequest extends FormRequest
         return [
             'role_id' => ['required','integer', Rule::exists(Role::class,'id')],
             'title' => ['required','string','lowercase','min:2','max:255', Rule::unique(Role::class)->ignore($this->role_id)],
+            'permission_ids' => ['required','array'],
+            'permission_ids.*' => ['integer', Rule::exists(Permission::class, 'id')]
         ];
     }
 }

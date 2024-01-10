@@ -23,6 +23,9 @@
                                 {{ __('cruds.role.fields.title') }}
                             </th>
                             <th>
+                                {{ __('cruds.role.fields.permissions') }}
+                            </th>
+                            <th>
                                 &nbsp;
                             </th>
                         </tr>
@@ -35,6 +38,17 @@
                                 </td>
                                 <td>
                                     {{ $role->title ?? '' }}
+                                </td>
+                                <td>
+                                    @if($role->permissions->count() > 0)
+                                        @foreach($role->permissions as $permission)
+                                            @if($role->id == 1)
+                                                <span class="badge bg-primary">{{ $permission->title }}</span>
+                                            @else
+                                                <span class="badge bg-success">{{ $permission->title }}</span>
+                                            @endif
+                                        @endforeach
+                                    @endif
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-end">
