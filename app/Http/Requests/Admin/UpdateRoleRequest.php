@@ -24,7 +24,7 @@ class UpdateRoleRequest extends FormRequest
     {
         return [
             'role_id' => ['required','integer', Rule::exists(Role::class,'id')],
-            'title' => ['required','string','lowercase','min:2','max:255', Rule::unique(Role::class)->ignore($this->role_id)],
+            'title' => ['required','string','lowercase','min:2','max:255', Rule::unique(Role::class)->whereNull('deleted_at')->ignore($this->role_id)],
             'permission_ids' => ['required','array'],
             'permission_ids.*' => ['integer', Rule::exists(Permission::class, 'id')]
         ];
