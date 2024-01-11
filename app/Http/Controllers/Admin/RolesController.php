@@ -79,6 +79,8 @@ class RolesController extends Controller
 
         $role->permissions()->sync([]);
 
+        $role->users()->sync([]);
+
         $role->delete();
 
         return redirect()->route('admin.roles.index');
