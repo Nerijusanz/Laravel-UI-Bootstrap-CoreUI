@@ -23,7 +23,7 @@ class UpdatePermissionRequest extends FormRequest
     {
         return [
             'permission_id' => ['required','integer', Rule::exists(Permission::class,'id')],
-            'title' => ['required','string','lowercase','min:2','max:255', Rule::unique(Permission::class)->ignore($this->permission_id)],
+            'title' => ['required','string','lowercase','min:2','max:255', Rule::unique(Permission::class)->whereNull('deleted_at')->ignore($this->permission_id)],
         ];
     }
 }
