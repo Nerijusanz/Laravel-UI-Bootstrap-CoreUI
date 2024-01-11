@@ -25,7 +25,7 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name' => ['required','string','min:2','max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->whereNull('deleted_at')],
             'password' => ['required',Password::defaults(),'confirmed'],
             'role_id'  => ['required','integer', Rule::exists(Role::class, 'id')]
         ];
