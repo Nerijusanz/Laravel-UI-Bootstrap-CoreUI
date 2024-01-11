@@ -22,7 +22,7 @@ class StorePermissionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required','string','lowercase','min:2','max:255', Rule::unique(Permission::class)],
+            'title' => ['required','string','lowercase','min:2','max:255', Rule::unique(Permission::class)->whereNull('deleted_at')],
         ];
 
     }
