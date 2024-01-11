@@ -23,7 +23,7 @@ class StoreRoleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required','string','lowercase','min:2','max:255', Rule::unique(Role::class)],
+            'title' => ['required','string','lowercase','min:2','max:255', Rule::unique(Role::class)->whereNull('deleted_at')],
             'permission_ids' => ['required','array'],
             'permission_ids.*' => ['integer', Rule::exists(Permission::class, 'id')]
         ];
