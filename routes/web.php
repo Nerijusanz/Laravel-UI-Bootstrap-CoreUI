@@ -18,13 +18,10 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function () {
-    if (session('status')) {
-        return redirect()->route('admin.home')->with('status', session('status'));
-    }
+    if (session('status')) return redirect()->route('admin.home')->with('status', session('status'));
 
     return redirect()->route('admin.home');
 });
-
 
 Auth::routes();
 
