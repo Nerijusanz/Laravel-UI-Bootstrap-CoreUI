@@ -81,7 +81,7 @@ class UsersController extends Controller
         if(isset($request['password']) && $request['password'] !== null){
 
             $validator = Validator::make($request->all(), [
-                'password' => ['required','string','max:255', Password::defaults(), 'confirmed'],
+                'password' => ['required', 'confirmed', Password::min(8)],
             ]);
 
             if ($validator->fails()) return redirect()->back()->withErrors($validator)->withInput();
