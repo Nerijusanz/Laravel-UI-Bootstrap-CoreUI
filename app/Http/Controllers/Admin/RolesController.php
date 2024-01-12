@@ -77,6 +77,10 @@ class RolesController extends Controller
     {
         abort_if(Gate::denies('role_management_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $role->load('users');
+
+        if($role->users()->exists()) return redirect()->back()->withErrors(__('cruds.role.messages.cant_delete_role_assigned_to_user'));
+
         $role->permissions()->sync([]);
 
         $role->users()->sync([]);

@@ -32,7 +32,8 @@ return [
             'deleted_at'         => 'Deleted at',
         ],
         'messages' => [
-            'updated' => 'updated'
+            'updated' => 'updated',
+            'cant_delete_role_assigned_to_user' => 'Can`t delete role assigned to user'
         ],
     ],
     'user' => [
