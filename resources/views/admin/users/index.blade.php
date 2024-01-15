@@ -57,7 +57,7 @@
                                 <td>
                                     <div class="d-flex justify-content-end">
                                         @can('user_management_show')
-                                            <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-sm btn-primary text-light me-1"><i class="fas fa-eye"></i></a>
+                                            <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-sm border-0 bg-transparent me-1"><i class="fas fa-eye text-primary"></i></a>
                                         @endcan
                                     </div>
                                 </td>

@@ -53,14 +53,14 @@
                                 <td>
                                     <div class="d-flex justify-content-end">
                                         @can('role_management_show')
-                                            <a href="{{ route('admin.roles.show', $role->id) }}" class="btn btn-sm btn-primary text-light me-1"><i class="fas fa-eye"></i></a>
+                                            <a href="{{ route('admin.roles.show', $role->id) }}" class="btn btn-sm border-0 bg-transparent me-1"><i class="fas fa-eye text-primary"></i></a>
                                         @endcan
                                         @can('role_management_edit')
-                                            <a href="{{ route('admin.roles.edit', $role->id) }}" class="btn btn-sm btn-info text-light me-1"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('admin.roles.edit', $role->id) }}" class="btn btn-sm border-0 bg-transparent me-1"><i class="fas fa-edit text-info"></i></a>
                                         @endcan
                                         @can('role_management_delete')
-                                            <button type="submit" class="btn btn-sm btn-danger text-light" onclick="if (confirm('{{ __('global.areYouSure') }}') == true){ event.preventDefault(); document.getElementById('form-role-delete-{{ $role->id }}').submit(); }">
-                                                <i class="fas fa-trash"></i>
+                                            <button type="submit" class="btn btn-sm border-0 bg-transparent" onclick="if (confirm('{{ __('global.areYouSure') }}') == true){ event.preventDefault(); document.getElementById('form-role-delete-{{ $role->id }}').submit(); }">
+                                                <i class="fas fa-trash text-danger"></i>
                                             </button>
                                             <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" id="form-role-delete-{{ $role->id }}" class="d-none">
                                                 <input type="hidden" name="_method" value="DELETE">

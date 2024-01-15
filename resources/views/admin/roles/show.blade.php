@@ -14,11 +14,11 @@
         <div class="card-body">
             <div class="d-flex justify-content-end mb-1">
                 @can('role_management_edit')
-                    <a href="{{ route('admin.roles.edit', $role->id) }}" class="btn btn-sm btn-info text-light float-end me-1"><i class="fas fa-edit"></i></a>
+                    <a href="{{ route('admin.roles.edit', $role->id) }}" class="btn btn-sm border-0 bg-transparent float-end me-1"><i class="fas fa-edit text-info"></i></a>
                 @endcan
                 @can('role_management_delete')
-                    <button type="submit" class="btn btn-sm btn-danger text-light float-end" onclick="if (confirm('{{ __('global.areYouSure') }}') == true){ event.preventDefault(); document.getElementById('form-role-delete-{{ $role->id }}').submit(); }">
-                        <i class="fas fa-trash"></i>
+                    <button type="submit" class="btn btn-sm border-0 bg-transparent float-end" onclick="if (confirm('{{ __('global.areYouSure') }}') == true){ event.preventDefault(); document.getElementById('form-role-delete-{{ $role->id }}').submit(); }">
+                        <i class="fas fa-trash text-danger"></i>
                     </button>
                     <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" id="form-role-delete-{{ $role->id }}" class="d-none">
                         <input type="hidden" name="_method" value="DELETE">
