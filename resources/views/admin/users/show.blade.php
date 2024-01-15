@@ -14,11 +14,11 @@
         <div class="card-body">
             <div class="d-flex justify-content-end mb-1">
                 @can('user_management_edit')
-                    <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-sm btn-info text-light float-end me-1"><i class="fas fa-edit"></i></a>
+                    <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-sm border-0 bg-transparent float-end me-1"><i class="fas fa-edit text-info"></i></a>
                 @endcan
                 @can('user_management_delete')
-                    <button type="submit" class="btn btn-sm btn-danger text-light float-end" onclick="if (confirm('{{ __('global.areYouSure') }}') == true){ event.preventDefault(); document.getElementById('form-user-delete-{{ $user->id }}').submit(); }">
-                        <i class="fas fa-trash"></i>
+                    <button type="submit" class="btn btn-sm border-0 bg-transparent float-end" onclick="if (confirm('{{ __('global.areYouSure') }}') == true){ event.preventDefault(); document.getElementById('form-user-delete-{{ $user->id }}').submit(); }">
+                        <i class="fas fa-trash text-danger"></i>
                     </button>
                     <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" id="form-user-delete-{{ $user->id }}" class="d-none">
                         <input type="hidden" name="_method" value="DELETE">
