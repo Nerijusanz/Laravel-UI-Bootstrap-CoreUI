@@ -14,7 +14,7 @@
                             <a class="nav-link" href="#"><i class="nav-icon fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
                         @can('user_management_access')
-                            <li class="nav-group"><a class="nav-link nav-group-toggle" href="#"><i class="nav-icon fas fa-users"></i>User</a>
+                            <li class="nav-group"><a class="nav-link nav-group-toggle" href="#"><i class="nav-icon fas fa-users"></i>URP manager</a>
                                 <ul class="nav-group-items">
                                     @can('permission_management_access')
                                         <li class="nav-item"><a href="{{ route('admin.permissions.index') }}" class="nav-link {{ request()->routeIs('admin.permissions.*') ? 'active':'' }}"><i class="nav-icon fas fa-unlock-alt"></i></i>{{ __('cruds.permission.title') }}</a></li>
