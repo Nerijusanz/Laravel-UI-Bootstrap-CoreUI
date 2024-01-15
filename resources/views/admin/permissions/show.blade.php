@@ -42,7 +42,7 @@
                                 {{ __('cruds.permission.fields.title') }}
                             </th>
                             <td>
-                                {{ $permission->title ?? '' }}
+                                <span class="badge bg-success">{{ $permission->title }}</span>
                             </td>
                         </tr>
                     </tbody>

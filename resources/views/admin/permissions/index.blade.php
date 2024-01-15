@@ -34,7 +34,7 @@
                                     {{ $permission->id ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $permission->title ?? '' }}
+                                    <span class="badge bg-success">{{ $permission->title }}</span>
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-end">
