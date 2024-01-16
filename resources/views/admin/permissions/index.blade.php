@@ -28,40 +28,42 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($permissions as $permission)
-                            <tr>
-                                <td>
-                                    {{ $permission->id ?? '' }}
-                                </td>
-                                <td>
-                                    <span class="badge bg-success">{{ $permission->title }}</span>
-                                </td>
-                                <td>
-                                    <div class="d-flex justify-content-end">
-                                        @can('permission_management_show')
-                                            <a href="{{ route('admin.permissions.show', $permission->id) }}" class="btn btn-sm border-0 bg-transparent me-1"><i class="fas fa-eye text-primary"></i></a>
-                                        @endcan
-                                        @can('permission_management_edit')
-                                            <a href="{{ route('admin.permissions.edit', $permission->id) }}" class="btn btn-sm border-0 bg-transparent me-1"><i class="fas fa-edit text-info"></i></a>
-                                        @endcan
-                                        @can('permission_management_delete')
-                                            <button type="submit" class="btn btn-sm border-0 bg-transparent" onclick="if (confirm('{{ __('global.areYouSure') }}') == true){ event.preventDefault(); document.getElementById('form-permission-delete-{{ $permission->id }}').submit(); }">
-                                                <i class="fas fa-trash text-danger"></i>
-                                            </button>
-                                            <form action="{{ route('admin.permissions.destroy', $permission->id) }}" method="POST" id="form-permission-delete-{{ $permission->id }}" class="d-none">
-                                                <input type="hidden" name="_method" value="DELETE">
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                            </form>
-                                        @endcan
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
+                        @if( $data['permissions_count'] )
+                            @foreach( $data['permissions'] as $permission)
+                                <tr>
+                                    <td>
+                                        {{ $permission->id }}
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-success">{{ $permission->title }}</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex justify-content-end">
+                                            @can('permission_management_show')
+                                                <a href="{{ route('admin.permissions.show', $permission->id) }}" class="btn btn-sm border-0 bg-transparent me-1"><i class="fas fa-eye text-primary"></i></a>
+                                            @endcan
+                                            @can('permission_management_edit')
+                                                <a href="{{ route('admin.permissions.edit', $permission->id) }}" class="btn btn-sm border-0 bg-transparent me-1"><i class="fas fa-edit text-info"></i></a>
+                                            @endcan
+                                            @can('permission_management_delete')
+                                                <button type="submit" class="btn btn-sm border-0 bg-transparent" onclick="if (confirm('{{ __('global.areYouSure') }}') == true){ event.preventDefault(); document.getElementById('form-permission-delete-{{ $permission->id }}').submit(); }">
+                                                    <i class="fas fa-trash text-danger"></i>
+                                                </button>
+                                                <form action="{{ route('admin.permissions.destroy', $permission->id) }}" method="POST" id="form-permission-delete-{{ $permission->id }}" class="d-none">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
+                                            @endcan
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>
             <div class="d-flex justify-content-center">
-                {!! $permissions->links() !!}
+                {!! $data['permissions_pagination'] !!}
             </div>
         </div>
     </div>

@@ -21,8 +21,8 @@
                         <i class="fas fa-trash text-danger"></i>
                     </button>
                     <form action="{{ route('admin.permissions.destroy', $permission->id) }}" method="POST" id="form-permission-delete-{{ $permission->id }}" class="d-none">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        @csrf
+                        @method('DELETE')
                     </form>
                 @endcan
             </div>
@@ -34,7 +34,7 @@
                                 {{ __('cruds.permission.fields.id') }}
                             </th>
                             <td>
-                                {{ $permission->id ?? '' }}
+                                {{ $permission->id }}
                             </td>
                         </tr>
                         <tr>
