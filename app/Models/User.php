@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Laravel\Sanctum\HasApiTokens;
+use \DateTimeInterface;
 
 use Carbon\Carbon;
 use Hash;
@@ -44,6 +45,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+
+    }
 
     public function setPasswordAttribute($input)
     {
