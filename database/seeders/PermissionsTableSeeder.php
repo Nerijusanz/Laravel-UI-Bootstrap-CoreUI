@@ -24,7 +24,8 @@ class PermissionsTableSeeder extends Seeder
                 $permissions[] = [
                     'id'    => $i++,
                     'title' => $permissionGroup . '_management_' . $permission,
-                    'created_at' => now()
+                    'created_at' => now(),
+                    'updated_at' => now()
                 ];
             }
         }

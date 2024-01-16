@@ -19,7 +19,8 @@ class UsersTableSeeder extends Seeder
                 'email'          => 'admin@admin.com',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
-                'created_at'     => now()
+                'created_at'     => now(),
+                'updated_at'     => now()
             ],
             [
                 'id'             => 2,
@@ -27,7 +28,8 @@ class UsersTableSeeder extends Seeder
                 'email'          => 'user@user.com',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
-                'created_at'     => now()
+                'created_at'     => now(),
+                'updated_at'     => now()
             ],
         ];
 

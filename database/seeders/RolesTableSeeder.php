@@ -15,12 +15,14 @@ class RolesTableSeeder extends Seeder
             [
                 'id'    => 1,
                 'title' => 'admin',
-                'created_at' => now()
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'id'    => 2,
                 'title' => 'user',
-                'created_at' => now()
+                'created_at' => now(),
+                'updated_at' => now()
             ],
 
         ];
