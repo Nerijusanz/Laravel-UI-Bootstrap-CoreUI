@@ -23,7 +23,12 @@ class PermissionsController extends Controller
 
         $permissions = Permission::paginate();
 
-        return view('admin.permissions.index', compact('permissions'));
+        $data = [];
+        $data['permissions'] = $permissions;
+        $data['permissions_count'] = $permissions->count();
+        $data['permissions_pagination'] = $permissions->links();
+
+        return view('admin.permissions.index', compact('data'));
     }
 
     public function create(): View
