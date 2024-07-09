@@ -11,19 +11,23 @@
                         <div class="simplebar-content" style="padding: 0px;">
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="nav-icon fas fa-tachometer-alt"></i>Dashboard</a>
+                            <a class="nav-link" href="#"><i class="nav-icon fas fa-tachometer-alt"></i>{{ __('panel.sidebar.dashboard') }}</a>
                         </li>
                         @can('user_management_access')
-                            <li class="nav-group"><a class="nav-link nav-group-toggle" href="#"><i class="nav-icon fas fa-users"></i>{{ __('cruds.userManagement.title') }}</a>
+                            <li class="nav-group"><a class="nav-link nav-group-toggle" href="#"><i class="nav-icon fas fa-users"></i>{{ __('panel.sidebar.groups.user_management.title') }}</a>
                                 <ul class="nav-group-items">
                                     @can('permission_management_access')
-                                        <li class="nav-item"><a href="{{ route('admin.permissions.index') }}" class="nav-link {{ request()->routeIs('admin.permissions.*') ? 'active':'' }}"><i class="nav-icon fas fa-unlock-alt"></i></i>{{ __('cruds.permission.title') }}</a></li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('admin.permissions.index') }}" class="nav-link {{ request()->routeIs('admin.permissions.*') ? 'active':'' }}">
+                                                <i class="nav-icon fas fa-unlock-alt"></i>{{ __('panel.sidebar.groups.user_management.nav_links.permissions') }}</a></li>
                                     @endcan
                                     @can('role_management_access')
-                                        <li class="nav-item"><a href="{{ route('admin.roles.index') }}" class="nav-link {{ request()->routeIs('admin.roles.*') ? 'active':'' }}"><i class="nav-icon fas fa-briefcase"></i></i>{{ __('cruds.role.title') }}</a></li>
+                                        <li class="nav-item"><a href="{{ route('admin.roles.index') }}" class="nav-link {{ request()->routeIs('admin.roles.*') ? 'active':'' }}">
+                                            <i class="nav-icon fas fa-briefcase"></i>{{ __('panel.sidebar.groups.user_management.nav_links.roles') }}</a></li>
                                     @endcan
                                     @can('user_management_access')
-                                        <li class="nav-item"><a href="{{ route('admin.users.index') }}" class="nav-link {{ request()->routeIs('admin.users.*') ? 'active':'' }}"><i class="nav-icon fas fa-user"></i>{{ __('cruds.user.title') }}</a></li>
+                                        <li class="nav-item"><a href="{{ route('admin.users.index') }}" class="nav-link {{ request()->routeIs('admin.users.*') ? 'active':'' }}">
+                                            <i class="nav-icon fas fa-user"></i>{{ __('panel.sidebar.groups.user_management.nav_links.users') }}</a></li>
                                     @endcan
                                 </ul>
                             </li>
