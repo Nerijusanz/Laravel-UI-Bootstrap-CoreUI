@@ -16,7 +16,7 @@ class PermissionsTableSeeder extends Seeder
         $i                = 1;
         $permissions      = [];
         $permissionGroups = [
-            'permission', 'role', 'user'
+            'user', 'role', 'permission'
         ];
 
         foreach ($permissionGroups as $permissionGroup) {
