@@ -9,7 +9,7 @@
     @endcan
     <div class="card">
         <div class="card-header">
-            <h6>{{ __('global.show') }} {{ __('cruds.permission.title') }}</h6>
+            <h6>{{ __('global.show') }} {{ __('cruds.role.title_singular') }}</h6>
         </div>
         <div class="card-body">
             <div class="d-flex justify-content-end mb-1">
