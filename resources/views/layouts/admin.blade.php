@@ -9,8 +9,8 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" />
         <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.0.0-rc.0/dist/css/coreui.min.css" rel="stylesheet" />
-        <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+        <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
         @yield('styles')
     </head>
     <body>
