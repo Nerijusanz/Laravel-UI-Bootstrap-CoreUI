@@ -25,7 +25,7 @@
                     <img src="https://placehold.co/118x46.png" width="118" height="46" alt="Logo" />
                 </a>
                 <ul class="header-nav d-none d-md-flex">
-                    <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">{{ __('panel.header_navigation.nav_links.dashboard') }}</a></li>
                 </ul>
                 <ul class="header-nav ms-auto"></ul>
                 <ul class="header-nav ms-3">
@@ -35,12 +35,13 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end pt-0">
                             <div class="dropdown-header bg-light py-2">
-                                <div class="fw-semibold">User</div>
+                                <div class="fw-semibold">{{ Auth::user()->name }}</div>
                             </div>
-                            <a class="dropdown-item" href="#"><i class="icon me-2 far fa-user"></i>Profile</a>
+                            <a class="dropdown-item" href="#"><i class="icon me-2 far fa-user"></i>{{ __('panel.header_navigation.user_dropdown_menu.nav_links.profile') }}</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
-                                <i class="icon me-2 fas fa-sign-out-alt"></i>Logout
+                                <i class="icon me-2 fas fa-sign-out-alt"></i>
+                                {{ __('panel.header_navigation.user_dropdown_menu.nav_links.logout') }}
                             </a>
                         </div>
                     </li>
